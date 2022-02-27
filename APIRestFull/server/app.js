@@ -2,7 +2,12 @@ import express from "express";
 import cors from 'cors'
 import routes from '../routes/index.js'
 
+import Home from '../controller/Home.js'
+import AppController from "../controller/App.js";
+
 const app = express();
+
+app.get("/", Home.index)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,7 +20,7 @@ app.use(cors());
     next();
 });*/
 
-app.use(routes);
+//app.use(routes);
 
 /*app.use((request, response, next) => {
     if(request.url === '/favicon.ico') {
@@ -26,7 +31,10 @@ app.use(routes);
     }
 });*/
 
-app.use((request, response, next) => {
+app.use(AppController.notFound);
+app.use(AppController.handleError);
+
+/*app.use((request, response, next) => {
     var err = new Error('Not found')
     err.status = 404;
     next(err);
@@ -35,6 +43,6 @@ app.use((request, response, next) => {
 app.use((err, request, response, next) => {
     if(err.status !== 404) console.log(err.stack);
     response.status(err.status || 500).json({ err: err.message});
-})
+})*/
 
-app.listen(3000);
+export default app;
