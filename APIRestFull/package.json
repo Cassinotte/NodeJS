@@ -12,7 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "config": "^3.3.7",
     "cors": "^2.8.5",
-    "express": "^4.17.3"
+    "debug": "^4.3.3",
+    "dnscache": "^1.0.2",
+    "express": "^4.17.3",
+    "mongoist": "^2.5.3"
   }
 }
