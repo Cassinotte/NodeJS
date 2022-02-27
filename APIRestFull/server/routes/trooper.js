@@ -4,7 +4,7 @@ import controller from '../controller/Stormtrooper.js'
 const trooperRoutes = new Router();
 
 trooperRoutes.get('/', controller.list);
-trooperRoutes.get('/:id', controller.byId);
+trooperRoutes.get('/:id', controller.byId2);
 trooperRoutes.post('/', controller.create);
 trooperRoutes.put('/:id', controller.updateById);
 trooperRoutes.delete('/:id', controller.deleteById);

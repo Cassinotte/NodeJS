@@ -17,6 +17,7 @@
     "debug": "^4.3.3",
     "dnscache": "^1.0.2",
     "express": "^4.17.3",
+    "http-errors": "^2.0.0",
     "mongoist": "^2.5.3"
   }
 }
