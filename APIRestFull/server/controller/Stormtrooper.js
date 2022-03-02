@@ -34,9 +34,7 @@ const Stormtrooper = {
     async byId2(request, response, next) {
         
         const id = request.params.id;
-        if(!/[0-9a-f]{24}/.test(id))
-            return next(createError(422, 'invalid id'));
-
+      
         try
         {
             const result = await repository.byId(id)
@@ -48,7 +46,13 @@ const Stormtrooper = {
             next(e);
         }
       },
-    create(request, response, next) { },
+    create(request, response, next) {
+
+        repository.create(request.body)
+            .then(result => response.status(201).json(result))
+            .catch(next);
+
+    },
     updateById(request, response, next) {},
     deleteById(request, response, next) {}
 

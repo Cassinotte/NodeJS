@@ -7,11 +7,11 @@ import routes from "./routes/index.js";
 
 const app = express();
 
-app.get("/", Home.index)
-app.use(routes);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get("/", Home.index)
+app.use(routes);
 
 app.use(cors());
 

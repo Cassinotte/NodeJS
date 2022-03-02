@@ -10,7 +10,7 @@ const Stormtrooper = {
         return db.stormtroopers.findOne({ _id: mongoist.ObjectId(id) })
       },
       create(data) {
-        return db.stormtroopers.insert(data)
+        return db.stormtroopers.insert(data);
       },
       updateById(id, data) {
         return db.stormtroopers.update({ _id: mongoist.ObjectId(id) }, { $set: data })
