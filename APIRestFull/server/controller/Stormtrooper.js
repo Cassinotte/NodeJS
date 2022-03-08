@@ -14,7 +14,10 @@ const handleNotFound = (result) => {
 const Stormtrooper = {
 
     list(request, response, next) {
-        repository.list()
+        
+        const { q, page } = request.query;
+
+        repository.list(q,page)
             .then(result => response.json(result))
             .catch(next);
     },
@@ -53,8 +56,19 @@ const Stormtrooper = {
             .catch(next);
 
     },
-    updateById(request, response, next) {},
-    deleteById(request, response, next) {}
+    updateById(request, response, next) {
+
+        repository.updateById(request.params.id, request.body)
+            .then(result => response.json(result))
+            .catch(next)
+
+    },
+    deleteById(request, response, next) {
+
+        repository.deleteById(request.params.id)
+        .then(_ => response.sendStatus(204))
+        .catch(next);
+    }
 
 };
 

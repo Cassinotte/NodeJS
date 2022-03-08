@@ -2,9 +2,17 @@ import db from '../config/mongoist.js'
 import mongoist from 'mongoist'
 
 const Stormtrooper = {
-    list() {
-        const query = {}
-        return db.stormtroopers.find(query)
+    list(q, page = 1) {
+
+        const query = {};
+        if(q) query.name = new RegEx(q,'i');
+
+        const DEFAULT_LIMIT = 10;
+        const skip = Math.abs(page - 1) * DEFAULT_LIMIT;
+
+
+        return db.stormtroopers.find(query, {}, {skip, limit: DEFAULT_LIMIT});
+
     },
     byId(id) {
         return db.stormtroopers.findOne({ _id: mongoist.ObjectId(id) })
