@@ -35,7 +35,6 @@ const Stormtrooper3 = {
     async byId2(request, response, next) {
         
         const id = request.params.id;
-      
         try
         {
             const result = await repository.byId(id)

@@ -1,4 +1,5 @@
 import db from '../config/pg.js'
+import { setCache } from '../middleware/cache.js'
 
 const sql = `SELECT st.id, st.name, st.nickname, p.name as patent
              FROM STORMTROOPERS st
@@ -14,7 +15,11 @@ const Stormtrooper3 = {
     },
     byId(id) {
       return db.query(`${sql} WHERE st.id = $1::int`, [id])
-         .then(result => result.rows && result.rows[0]);
+         .then(result => result.rows && result.rows[0])
+         .then(result => {
+            setCache(id,result);
+            return result;
+         })
     },
     create(data) {
        const sql = `INSERT INTO stormtroopers (name, nickname, id_patent) values ($1::text, $2::text, $3::int) RETURNING id`
