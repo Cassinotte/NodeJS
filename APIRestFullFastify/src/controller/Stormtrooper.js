@@ -18,7 +18,7 @@ const Stormtrooper = {
         reply.type('application/json').code(200);
         return result;
     },
-    async Create(request, reply) {
+    async create(request, reply) {
         const result = await repository.create(request.body);
         reply.type('application/json').code(201);
         return result;
